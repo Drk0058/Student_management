@@ -60,7 +60,7 @@
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-              <a href="{% url 'attendance' request.user.student.USN %}">
+              <a href="{% url 'attendance' request.user.student.Rollno %}">
                 <img class="card-img-top" src="{% static 'info/images/attendance2.jpg' %}" alt="">
               </a>
               <div class="card-body">
@@ -69,14 +69,14 @@
                   also displayed as list of classes that were conducted.</p>
             </div>
             <div class="card-footer">
-                <a class="btn btn-primary" role="button" href="{% url 'attendance' request.user.student.USN %}"> View Attendance</a>
+                <a class="btn btn-primary" role="button" href="{% url 'attendance' request.user.student.Rollno %}"> View Attendance</a>
             </div>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-              <a href="{% url 'marks_list' request.user.student.USN %}">
+              <a href="{% url 'marks_list' request.user.student.Rollno %}">
                 <img class="card-img-top" src="{% static 'info/images/marks.jpg' %}" alt="">
               </a>
               <div class="card-body">
@@ -85,7 +85,7 @@
                   internal assessment, 2 events and the Semester End Exam  </p>
             </div>
             <div class="card-footer">
-                <a class="btn btn-primary" role="button" href="{% url 'marks_list' request.user.student.USN %}">View Marks</a>
+                <a class="btn btn-primary" role="button" href="{% url 'marks_list' request.user.student.Rollno %}">View Marks</a>
             </div>
           </div>
         </div>

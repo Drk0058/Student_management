@@ -16,7 +16,7 @@ class InfoTest(TestCase):
     def test_user_creation(self):
         us = self.create_user()
         ut = self.create_user(username='teacher')
-        s = Student(user=us, USN='CS01', name='test')
+        s = Student(user=us, Rollno='CS01', name='test')
         s.save()
         t = Teacher(user=ut, id='CS01', name='test')
         t.save()
@@ -50,10 +50,10 @@ class InfoTest(TestCase):
         self.assertTrue(isinstance(c, Course))
         self.assertEqual(c.__str__(), c.name)
 
-    def create_student(self, usn='CS01', name='samarth'):
+    def create_student(self, Rollno='CS01', name='samarth'):
         cl = self.create_class()
         u = self.create_user()
-        return Student.objects.create(user=u, class_id=cl, USN=usn, name=name)
+        return Student.objects.create(user=u, class_id=cl, Rollno=Rollno, name=name)
 
     def test_student_creation(self):
         s = self.create_student()
@@ -92,7 +92,7 @@ class InfoTest(TestCase):
 
     def test_index_student(self):
         self.client.login(username='test_user', password='test_password')
-        s = Student.objects.create(user=User.objects.first(), USN='test', name='test_name')
+        s = Student.objects.create(user=User.objects.first(), Rollno='test', name='test_name')
         response = self.client.get(reverse('index'))
         self.assertContains(response, s.name)
         self.assertEqual(response.status_code, 200)
@@ -107,7 +107,7 @@ class InfoTest(TestCase):
     def test_no_attendance(self):
         s = self.create_student()
         self.client.login(username='test_user', password='test_password')
-        response = self.client.get(reverse('attendance', args=(s.USN,)))
+        response = self.client.get(reverse('attendance', args=(s.Rollno,)))
         self.assertContains(response, "student has no courses")
         self.assertEqual(response.status_code, 200)
 
@@ -115,7 +115,7 @@ class InfoTest(TestCase):
         s = self.create_student()
         self.client.login(username='test_user', password='test_password')
         Assign.objects.create(class_id=s.class_id, course=self.create_course(), teacher=self.create_teacher())
-        response = self.client.get(reverse('attendance', args=(s.USN,)))
+        response = self.client.get(reverse('attendance', args=(s.Rollno,)))
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(response.context['att_list'], ['<AttendanceTotal: AttendanceTotal object (1)>'])
 
@@ -123,7 +123,7 @@ class InfoTest(TestCase):
         s = self.create_student()
         cr = self.create_course()
         self.client.login(username='test_user', password='test_password')
-        resp = self.client.get(reverse('attendance_detail', args=(s.USN, cr.id)))
+        resp = self.client.get(reverse('attendance_detail', args=(s.Rollno, cr.id)))
         self.assertEqual(resp.status_code, 200)
         self.assertContains(resp, "student has no attendance")
 
@@ -132,7 +132,7 @@ class InfoTest(TestCase):
         cr = self.create_course()
         Attendance.objects.create(student=s, course=cr)
         self.client.login(username='test_user', password='test_password')
-        resp = self.client.get(reverse('attendance_detail', args=(s.USN, cr.id)))
+        resp = self.client.get(reverse('attendance_detail', args=(s.Rollno, cr.id)))
         self.assertEqual(resp.status_code, 200)
         self.assertQuerysetEqual(resp.context['att_list'], ['<Attendance: ' + s.name + ' : ' + cr.shortname + '>'])
 

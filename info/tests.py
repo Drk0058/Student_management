@@ -16,7 +16,7 @@ class InfoTest(TestCase):
     def test_user_creation(self):
         us = self.create_user()
         ut = self.create_user(username='teacher')
-        s = Student(user=us, USN='CS01', name='test')
+        s = Student(user=us, Rollno='CS01', name='test')
         s.save()
         t = Teacher(user=ut, id='CS01', name='test')
         t.save()
@@ -50,10 +50,10 @@ class InfoTest(TestCase):
         self.assertTrue(isinstance(c, Course))
         self.assertEqual(c.__str__(), c.name)
 
-    def create_student(self, usn='CS01', name='samarth'):
+    def create_student(self, Rollno='CS01', name='samarth'):
         cl = self.create_class()
         u = self.create_user()
-        return Student.objects.create(user=u, class_id=cl, USN=usn, name=name)
+        return Student.objects.create(user=u, class_id=cl, Rollno=Rollno, name=name)
 
     def test_student_creation(self):
         s = self.create_student()
@@ -92,7 +92,7 @@ class InfoTest(TestCase):
 
     def test_index_student(self):
         self.client.login(username='test_user', password='test_password')
-        s = Student.objects.create(user=User.objects.first(), USN='test', name='test_name')
+        s = Student.objects.create(user=User.objects.first(), Rollno='test', name='test_name')
         response = self.client.get(reverse('index'))
         self.assertContains(response, s.name)
         self.assertEqual(response.status_code, 200)

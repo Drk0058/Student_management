@@ -57,7 +57,7 @@ class StudentCourseAdmin(admin.ModelAdmin):
     inlines = [MarksInline]
     list_display = ('student', 'course',)
     search_fields = ('student__name', 'course__name', 'student__class_id__id', 'student__class_id__dept__name')
-    ordering = ('student__class_id__dept__name', 'student__class_id__id', 'student__USN')
+    ordering = ('student__class_id__dept__name', 'student__class_id__id', 'student__Rollno')
 
 
 class StudentAdmin(admin.ModelAdmin):

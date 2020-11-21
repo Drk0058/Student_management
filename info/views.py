@@ -18,7 +18,7 @@ def index(request):
 
 @login_required()
 def attendance(request, stud_id):
-    stud = Student.objects.get(USN=stud_id)
+    stud = Student.objects.get(Rollno=stud_id)
     ass_list = Assign.objects.filter(class_id_id=stud.class_id)
     att_list = []
     for ass in ass_list:
@@ -33,7 +33,7 @@ def attendance(request, stud_id):
 
 @login_required()
 def attendance_detail(request, stud_id, course_id):
-    stud = get_object_or_404(Student, USN=stud_id)
+    stud = get_object_or_404(Student, Rollno=stud_id)
     cr = get_object_or_404(Course, id=course_id)
     att_list = Attendance.objects.filter(course=cr, student=stud).order_by('date')
     return render(request, 'info/att_detail.html', {'att_list': att_list, 'cr': cr})
@@ -44,7 +44,7 @@ def attendance_detail(request, stud_id, course_id):
 #     search = request.POST['search']
 #     class1 = get_object_or_404(Class, id=class_id)
 #     if field == 'Rollno':
-#         student_list = class1.student_set.filter(USN__icontains=search)
+#         student_list = class1.student_set.filter(Rollno__icontains=search)
 #     elif field == 'name':
 #         student_list = class1.student_set.filter(name__icontains=search)
 #     else:
@@ -122,7 +122,7 @@ def confirm(request, ass_c_id):
     cr = ass.course
     cl = ass.class_id
     for i, s in enumerate(cl.student_set.all()):
-        status = request.POST[s.Rollno]
+        status = request.POST.get(s.Rollno,False)
         if status == 'present':
             status = 'True'
         else:
@@ -146,7 +146,7 @@ def confirm(request, ass_c_id):
 
 @login_required()
 def t_attendance_detail(request, stud_id, course_id):
-    stud = get_object_or_404(Student, USN=stud_id)
+    stud = get_object_or_404(Student, Rollno=stud_id)
     cr = get_object_or_404(Course, id=course_id)
     att_list = Attendance.objects.filter(course=cr, student=stud).order_by('date')
     return render(request, 'info/t_att_detail.html', {'att_list': att_list, 'cr': cr})
@@ -176,16 +176,16 @@ def e_confirm(request, assign_id):
     ass = get_object_or_404(Assign, id=assign_id)
     cr = ass.course
     cl = ass.class_id
-    assc = ass.attendanceclass_set.create(status=1, date=request.POST['date'])
+    assc = ass.attendanceclass_set.create(status=1, date=request.POST.get('date',False))
     assc.save()
 
     for i, s in enumerate(cl.student_set.all()):
-        status = request.POST[s.Rollno]
+        status = request.POST.get(s.Rollno, False)
         if status == 'present':
             status = 'True'
         else:
             status = 'False'
-        date = request.POST['date']
+        date = request.POST.get('date', False)
         a = Attendance(course=cr, student=s, status=status, date=date, attendanceclass=assc)
         a.save()
 
@@ -272,7 +272,7 @@ def free_teachers(request, asst_id):
 
 @login_required()
 def marks_list(request, stud_id):
-    stud = Student.objects.get(USN=stud_id,)
+    stud = Student.objects.get(Rollno=stud_id,)
     ass_list = Assign.objects.filter(class_id_id=stud.class_id)
     sc_list = []
     for ass in ass_list:
@@ -322,7 +322,7 @@ def marks_confirm(request, marks_c_id):
     cr = ass.course
     cl = ass.class_id
     for s in cl.student_set.all():
-        mark = request.POST[s.Rollno]
+        mark = request.POST.get(s.Rollno,False)
         sc = StudentCourse.objects.get(course=cr, student=s)
         m = sc.marks_set.get(name=mc.name)
         m.marks1 = mark
