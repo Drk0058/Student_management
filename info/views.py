@@ -281,11 +281,9 @@ def marks_list(request, stud_id):
         except StudentCourse.DoesNotExist:
             sc = StudentCourse(student=stud, course=ass.course)
             sc.save()
-            sc.marks_set.create(type='I', name='Internal test 1')
-            sc.marks_set.create(type='I', name='Internal test 2')
-            sc.marks_set.create(type='I', name='Internal test 3')
-            sc.marks_set.create(type='E', name='Event 1')
-            sc.marks_set.create(type='E', name='Event 2')
+            sc.marks_set.create(type='I', name='Mt 1')
+            sc.marks_set.create(type='I', name='Mt 2')
+            sc.marks_set.create(type='I', name='TA')
             sc.marks_set.create(type='S', name='Semester End Exam')
         sc_list.append(sc)
 
