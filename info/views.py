@@ -6,10 +6,24 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-
-def alerts():
-    alert_list = Alert.objects.all().order_by('Date')
-    return render('info/alerts.html', {'Alert_list': alert_list})
+@login_required()
+def alerts(request, stud_id):
+    alert_list = []
+    alert_links = []
+    alert_type = []
+    alert_date = []
+    for x in Alert.objects.all().order_by('Date'):
+        alert_list.append(x.Heading)
+        alert_links.append(x.File_link)
+        alert_type.append(x.Type)
+        alert_date.append(x.Date)
+        context = {
+            'Alert_list': alert_list,
+            'Alert_type':alert_type,
+            'Alert_links':alert_links,
+            'Alert_date':alert_date
+        }
+    return render(request, 'info/alerts.html', context)
 
 @login_required
 def index(request):
