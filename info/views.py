@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 @login_required()
-def alerts(request, stud_id):
+def alerts(request,stud_id):
     alert_list = []
     alert_links = []
     alert_type = []
