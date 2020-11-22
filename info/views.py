@@ -8,20 +8,11 @@ from django.contrib.auth.decorators import login_required
 
 @login_required()
 def alerts(request,stud_id):
-    alert_list = []
-    alert_links = []
-    alert_type = []
-    alert_date = []
-    for x in Alert.objects.all().order_by('Date'):
-        alert_list.append(x.Heading)
-        alert_links.append(x.File_link)
-        alert_type.append(x.Type)
-        alert_date.append(x.Date)
+    alerts_list = []
+    for x in Alert.objects.all().order_by('Date').reverse():
+        alerts_list.append(x)
         context = {
-            'Alert_list': alert_list,
-            'Alert_type':alert_type,
-            'Alert_links':alert_links,
-            'Alert_date':alert_date
+            'Alerts_list':alerts_list,
         }
     return render(request, 'info/alerts.html', context)
 
