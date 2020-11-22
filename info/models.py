@@ -43,6 +43,14 @@ lab_choice = (
     ('Theory', 'Theory')
 )
 
+alert_choice = (
+    ('Exam','Exam'),
+    ('Result','Result'),
+    ('Holiday','Holiday'),
+    ('General','General'),
+
+)
+
 class User(AbstractUser):
     @property
     def is_student(self):
@@ -56,6 +64,12 @@ class User(AbstractUser):
             return True
         return False
 
+
+class Alert(models.Model):
+    Type = models.CharField(max_length=30, choices=alert_choice,blank=True)
+    Heading = models.CharField(max_length=200)
+    File_link = models.URLField()
+    Date = models.DateField(blank=True,default=date.today())
 
 class Dept(models.Model):
     id = models.CharField(primary_key='True', max_length=100)
