@@ -90,6 +90,11 @@
                 <span>Time Table</span>
               </a>
             </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'alerts' request.user.student.Rollno %}">
+                <span>Notifications</span>
+              </a>
+            </li>
 
         {% elif request.user.is_teacher %}
             <li class="nav-item">
