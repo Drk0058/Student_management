@@ -72,7 +72,7 @@ class Alert(models.Model):
     Date = models.DateField(blank=True,default=date.today())
 
     class Meta:
-        verbose_name_plural = 'classes'
+        verbose_name_plural = 'Alerts'
 
 class Dept(models.Model):
     id = models.CharField(primary_key='True', max_length=100)
