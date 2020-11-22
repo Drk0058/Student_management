@@ -4,6 +4,9 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+
+    path('student/<slug:stud_id>/alerts/',views.alerts,name='alerts'),
+
     path('student/<slug:stud_id>/attendance/', views.attendance, name='attendance'),
     path('student/<slug:stud_id>/<slug:course_id>/attendance/', views.attendance_detail, name='attendance_detail'),
     path('student/<slug:class_id>/timetable/', views.timetable, name='timetable'),
@@ -23,7 +26,7 @@ urlpatterns = [
     path('teacher/<int:assign_id>/Extra_class/', views.t_extra_class, name='t_extra_class'),
     path('teacher/<slug:assign_id>/Extra_class/confirm/', views.e_confirm, name='e_confirm'),
     path('teacher/<int:assign_id>/Report/', views.t_report, name='t_report'),
-
+    path('teacher/<slug:teacher_id>/alerts/',views.alerts,name='t_alerts'),
     path('teacher/<slug:teacher_id>/t_timetable/', views.t_timetable, name='t_timetable'),
     path('teacher/<int:asst_id>/Free_teachers/', views.free_teachers, name='free_teachers'),
 

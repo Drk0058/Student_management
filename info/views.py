@@ -1,11 +1,29 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
-from .models import Dept, Class, Student, Attendance, Course, Teacher, Assign, AttendanceTotal, time_slots, DAYS_OF_WEEK, AssignTime, AttendanceClass, StudentCourse, Marks, MarksClass
+from .models import Dept, Class, Student, Attendance, Course, Teacher, Assign, AttendanceTotal, time_slots, DAYS_OF_WEEK, AssignTime, AttendanceClass, StudentCourse, Marks, MarksClass,Alert
 from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+@login_required()
+def alerts(request, stud_id):
+    alert_list = []
+    alert_links = []
+    alert_type = []
+    alert_date = []
+    for x in Alert.objects.all().order_by('Date'):
+        alert_list.append(x.Heading)
+        alert_links.append(x.File_link)
+        alert_type.append(x.Type)
+        alert_date.append(x.Date)
+        context = {
+            'Alert_list': alert_list,
+            'Alert_type':alert_type,
+            'Alert_links':alert_links,
+            'Alert_date':alert_date
+        }
+    return render(request, 'info/alerts.html', context)
 
 @login_required
 def index(request):
