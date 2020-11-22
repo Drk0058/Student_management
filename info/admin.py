@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Dept, Class, Student, Attendance, Course, Teacher, Assign, AssignTime, AttendanceClass
+from .models import Dept, Class, Student, Attendance, Course, Teacher, Assign, AssignTime, AttendanceClass,Alert
 from .models import AttendanceTotal, StudentCourse, Marks, MarksClass, User
 from django.contrib.auth.admin import UserAdmin
 # Register your models here.
@@ -71,6 +71,9 @@ class TeacherAdmin(admin.ModelAdmin):
     search_fields = ('name', 'dept__name')
     ordering = ['dept__name', 'name']
 
+class AlertAdmin(admin.ModelAdmin):
+    list_display = ('Date','Type', 'Heading')
+
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Dept, DeptAdmin)
@@ -80,3 +83,4 @@ admin.site.register(Course, CourseAdmin)
 admin.site.register(Teacher, TeacherAdmin)
 admin.site.register(Assign, AssignAdmin)
 admin.site.register(StudentCourse, StudentCourseAdmin)
+admin.site.register(Alert, AlertAdmin)
