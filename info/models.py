@@ -71,6 +71,9 @@ class Alert(models.Model):
     File_link = models.URLField()
     Date = models.DateField(blank=True,default=date.today())
 
+    class Meta:
+        verbose_name_plural = 'classes'
+
 class Dept(models.Model):
     id = models.CharField(primary_key='True', max_length=100)
     name = models.CharField(max_length=200)
