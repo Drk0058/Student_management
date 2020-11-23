@@ -230,13 +230,13 @@ class StudentCourse(models.Model):
         cname = Course.objects.get(name=self.course)
         return '%s : %s' % (sname.name, cname.status)
 
-    def get_cie(self):
+    def get_gpa(self):
         marks_list = self.marks_set.all()
         m = []
         for mk in marks_list:
             m.append(mk.marks1)
-        cie = math.ceil(sum(m[:5])/2)
-        return cie
+        gpa = math.ceil(sum(m[:5]) / 2)
+        return gpa
 
     def get_attendance(self):
         a = AttendanceTotal.objects.get(student=self.student, course=self.course)
