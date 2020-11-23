@@ -11,10 +11,7 @@ def alerts(request,stud_id):
     alerts_list = []
     for x in Alert.objects.all().order_by('Date').reverse():
         alerts_list.append(x)
-        context = {
-            'Alerts_list':alerts_list,
-        }
-    return render(request, 'info/alerts.html', context)
+    return render(request, 'info/alerts.html', {'Alerts_list':alerts_list})
 
 @login_required
 def index(request):
@@ -240,7 +237,7 @@ def timetable(request, class_id):
 def t_timetable(request, teacher_id):
     asst = AssignTime.objects.filter(assign__teacher_id=teacher_id)
     class_matrix = [[True for i in range(13)] for j in range(5)]
-    class_link = [[Teacher.objects.get(id = teacher_id).meeting_link for i in range(13)] for j in range(5)]
+    class_link = Teacher.objects.get(id = teacher_id).meeting_link
     for i, d in enumerate(DAYS_OF_WEEK):
         t = 0
         for j in range(13):
