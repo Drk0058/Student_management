@@ -99,12 +99,11 @@
 </div>
 
 <!-- Page Features -->
-<div class="row text-center">
+<div class="row text-center d-flex justify-content-center">
 
-
-    <div class="col-xs-3 col-sm-3 col-md-3">
-        <div class="card align-items-center" style="width: 18rem;">
-            <img src='{% static ' info/images/Attendance 3.jpg' %}' class="card-img-top" alt="...">
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <div class="card align-items-center">
+            <img src='{% static "info/images/Attendance 3.jpg" %}' class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title"> Attendance</h5>
                 <p class="card-text">Enter the attendance of the students based on the class they are in. There is also
@@ -115,9 +114,9 @@
         </div>
     </div>
 
-    <div class="col-xs-3 col-sm-3 col-md-3">
-        <div class="card align-items-center" style="width: 18rem;">
-            <img src='{% static ' info/images/marks2.jpg' %}' class="card-img-top" alt="...">
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <div class="card align-items-center">
+            <img src='{% static "info/images/marks2.jpg" %}' class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title"> Marks</h5>
                 <p class="card-text">Enter the marks of the students based on the class they are in. This includes
@@ -129,9 +128,9 @@
         </div>
     </div>
 
-    <div class="col-xs-3 col-sm-3 col-md-3">
-        <div class="card align-items-center" style="width: 18rem;">
-            <img src='{% static ' info/images/timetable.jpg' %}' class="card-img-top" alt="...">
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <div class="card align-items-center">
+            <img src='{% static "info/images/timetable.jpg" %}' class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title"> Timetable</h5>
                 <p class="card-text">Enter the timetable in a tabular form. For a particular class, it specifies a
@@ -142,9 +141,9 @@
         </div>
     </div>
 
-    <div class="col-xs-3 col-sm-3 col-md-3">
-        <div class="card align-items-center" style="width: 18rem;">
-            <img src='{% static ' info/images/report.jpg' %}' class="card-img-top" alt="...">
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <div class="card align-items-center">
+            <img src='{% static "info/images/report.jpg" %}' class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title"> Reports</h5>
                 <p class="card-text">Generate reports for each class. These reports include generating a table
@@ -156,9 +155,16 @@
         </div>
     </div>
 
-
-    ]
-
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <div class="card align-items-center">
+            <img src='{% static "info/images/Notifications.jpg" %}' class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Live Chat</h5>
+                <p class="card-text">Live chat in rooms with other online students and or teachers.</p><br><br><br><br>
+                <a href="{% url 't_clas' request.user.teacher.id 3 %}" class="btn btn-primary">Live Chat</a>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- /.row -->
 
