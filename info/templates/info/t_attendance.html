@@ -1,45 +1,48 @@
 {% extends 'info/base.html' %}
+{% block title %}Attendance{% endblock %}
 {% block content %}
 {% if c.student_set.all %}
 
 <form action="{% url 'confirm' assc.id %}" method="post">
-            {% csrf_token %}
+    {% csrf_token %}
     <div class="card mb-3">
         <div class="card-header">
-          <i class="fas fa-table"></i>
-         <b>{{ dept1.name }}</b></div>
+            <i class="fas fa-table"></i>
+            <b>{{ dept1.name }}</b></div>
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-              <thead>
-                <tr>
-                    <th>Student name</th>
-                    <th></th>
-                </tr>
-              </thead>
-                <tbody>
-                {% for s in c.student_set.all %}
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
                     <tr>
-                    <td>{{s.name}}</td>
-                    <td>
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <th>Student name</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for s in c.student_set.all %}
+                    <tr>
+                        <td>{{s.name}}</td>
+                        <td>
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
 
                                 <label class="btn btn-outline-success active">
-                                    <input type="radio" name="{{ s.Rollno }}" id="option1" autocomplete="off" value="present" checked> Present
+                                    <input type="radio" name="{{ s.Rollno }}" id="option1" autocomplete="off"
+                                           value="present" checked> Present
                                 </label>
 
                                 <label class="btn btn-outline-danger">
-                                    <input type="radio" name="{{ s.Rollno }}" id="option2" autocomplete="off" value="absent"> Absent
+                                    <input type="radio" name="{{ s.Rollno }}" id="option2" autocomplete="off"
+                                           value="absent"> Absent
                                 </label>
-                        </div>
-                    </td>
+                            </div>
+                        </td>
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-          </div>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </div>
+    </div>
 
 
     <input class="btn btn-success" type="submit" value="Submit">
@@ -47,7 +50,7 @@
 
 
 {% else %}
-    <p>No students in Class</p>
+<p>No students in Class</p>
 {% endif %}
 
 {% endblock %}
