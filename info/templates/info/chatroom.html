@@ -1,16 +1,23 @@
 {% extends 'info/base.html' %}
-    {% load static %}
+{% load static %}
 
-    {% block content %}
+{% block content %}
 <body>
-    <h1><b>Welcome to room {{room_name}}</b></h1><br>
-    <textarea id="chat-log" cols="100" rows="20" readonly></textarea><br>
-    <input id="chat-message-input" type="text" size="100"><br>
-    <input id="chat-message-submit" type="button" value="Send Message">
-    {{ room_name|json_script:"room-name" }}
-    {{ stud_id | json_script:"stud-id" }}
-    {{ stud_name | json_script:"stud-name" }}
-    <script>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        <b>Welcome to room {{room_name}}</b>
+    </div>
+    <div class="card-body">
+        <textarea id="chat-log" cols="100" rows="20" readonly></textarea><br>
+        <input id="chat-message-input" type="text" size="98"><br><br>
+        <input class="btn btn-primary" id="chat-message-submit" type="button" value="Send Message">
+    </div>
+</div>
+{{ room_name|json_script:"room-name" }}
+{{ stud_id | json_script:"stud-id" }}
+{{ stud_name | json_script:"stud-name" }}
+<script>
         var studId = JSON.parse(document.getElementById('stud-id').textContent);
         var studName = JSON.parse(document.getElementById('stud-name').textContent);
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
@@ -50,7 +57,9 @@
             }));
             messageInputDom.value = '';
         };
-    </script>
+
+
+</script>
 </body>
 
 {%endblock%}
