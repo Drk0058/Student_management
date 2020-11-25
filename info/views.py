@@ -11,7 +11,7 @@ def alerts(request, stud_id):
     alerts_list = []
     for x in Alert.objects.all().order_by('Date').reverse():
         alerts_list.append(x)
-    return render(request, 'info/alerts.html', {'Alerts_list':alerts_list})
+    return render(request, 'info/alerts.html', {'Alerts_list':alerts_list, 'title':'Alerts'})
 
 @login_required()
 def chat(request, stud_id):

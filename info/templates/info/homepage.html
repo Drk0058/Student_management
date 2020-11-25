@@ -28,7 +28,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'index' %}">CollegeERP</a>
+        <a class="navbar-brand" href="{% url 'index' %}">NIT, Kurukshetra</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -103,7 +103,7 @@
 <div class="row text-center d-flex justify-content-center">
     <div class="col-xs-2 col-sm-2 col-md-2">
         <div class="card align-items-center">
-            <img src='{% static "info/images/Attendance 3.jpg" %}' class="card-img-top" alt="...">
+            <img src='{% static "info/images/group.png" %}' class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Attendance</h5>
                 <p class="card-text">View the attendance status for each of your courses. The attendance of each course
@@ -117,7 +117,7 @@
 
     <div class="col-xs-2 col-sm-2 col-md-2">
         <div class="card align-items-center">
-            <img src='{% static "info/images/marks2.jpg" %}' class="card-img-top" alt="...">
+            <img src='{% static "info/images/grade-sheet.png" %}' class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Marks</h5>
                 <p class="card-text">View the marks obtained for each of your courses. These include the marks of 3
@@ -131,7 +131,7 @@
 
     <div class="col-xs-2 col-sm-2 col-md-2">
         <div class="card align-items-center">
-            <img src='{% static "info/images/timetable.jpg" %}' class="card-img-top" alt="...">
+            <img src='{% static "info/images/time-date.png" %}' class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Timetable</h5>
                 <p class="card-text">View the timetable in a tabular form. The timetable displays all the courses of the
@@ -145,7 +145,7 @@
 
     <div class="col-xs-2 col-sm-2 col-md-2">
         <div class="card align-items-center">
-            <img src='{% static "info/images/Notifications.jpg" %}' class="card-img-top" alt="...">
+            <img src='{% static "info/images/information.png" %}' class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Notifications</h5>
                 <p class="card-text">View important updates or notification about our college. The notifications are
@@ -160,10 +160,10 @@
 
     <div class="col-xs-2 col-sm-2 col-md-2">
         <div class="card align-items-center">
-            <img src='{% static "info/images/Notifications.jpg" %}' class="card-img-top" alt="...">
+            <img src='{% static "info/images/chats.png" %}' class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Live Chat</h5>
-                <p class="card-text">Live chat in rooms with other online students and or teachers.</p><br><br><br>
+                <p class="card-text">Live chat in rooms with other online students of your class.</p><br><br><br>
                 <a class="btn btn-primary" role="button" href="{% url 'chat' request.user.student.Rollno %}">Live
                     Chat</a>
             </div>
