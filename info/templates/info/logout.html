@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,13 +10,14 @@
     <meta name="author" content="">
 
     <title>{% block title %}{% endblock %}</title>
-      {% load static %}
+    {% load static %}
 
     <!-- Bootstrap core CSS-->
     <link href="{% static '/info/bootstrap/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
-    <link href="{% static '/info/bootstrap/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static '/info/bootstrap/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet"
+          type="text/css">
 
     <!-- Page level plugin CSS-->
     <link href="{% static '/info/bootstrap/vendor/datatables/dataTables.bootstrap4.css' %}" rel="stylesheet">
@@ -27,28 +28,28 @@
     <!-- Latest compiled and minified CSS -->
 
 
-      {% block css %}
-      {% endblock %}
+    {% block css %}
+    {% endblock %}
 
-  </head>
+</head>
 
-  <body id="page-top">
+<body id="page-top">
 
-    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="{% url 'index' %}">CollegeERP</a>
+    <a class="navbar-brand mr-1" href="{% url 'index' %}">CollegeERP</a>
 
-      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
-      </button>
+    </button>
 
 
-    </nav>
+</nav>
 
-    <div id="wrapper">
+<div id="wrapper">
 
 
-      <div id="content-wrapper">
+    <div id="content-wrapper">
 
         <div class="container-fluid">
 
@@ -61,30 +62,30 @@
         </div>
         <!-- /.container-fluid -->
 
-      </div>
-      <!-- /.content-wrapper -->
-
     </div>
-    <!-- /#wrapper -->
+    <!-- /.content-wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fas fa-angle-up"></i>
-    </a>
+</div>
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
 
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{% static '/info/bootstrap/vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static '/info/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="{% static '/info/bootstrap/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static '/info/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="{% static '/info/bootstrap/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+<!-- Core plugin JavaScript-->
+<script src="{% static '/info/bootstrap/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="{% static '/info/bootstrap/js/sb-admin.min.js' %}"></script>
+<!-- Custom scripts for all pages-->
+<script src="{% static '/info/bootstrap/js/sb-admin.min.js' %}"></script>
 
-   {% block scripts %}
-    {% endblock %}
-  </body>
+{% block scripts %}
+{% endblock %}
+</body>
 
 </html>

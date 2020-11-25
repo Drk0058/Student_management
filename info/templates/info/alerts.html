@@ -1,41 +1,38 @@
 {% extends 'info/base.html' %}
-    {% load static %}
-
-    {% block content %}
-
-<style>
-    body {background-color: powderblue;}
-    h1{color:Black;
-    text-align:center;}
-    table, th, td {
-  border: 3px solid black;
-}
-</style>
+<head>
+    <title>Notifications</title>
+</head>
+{% load static %}
+{% block content %}
 <body>
-<h1><b>Notifications</b></h1><br><br><br>
-<div class="container mx-4 my-20">
-    <table style="width:100%">
-  <tr>
-    <th>Heading</th>
-    <th>Type</th>
-    <th>Link</th>
-      <th>Date</th>
-  </tr>
-        {% for alert in Alerts_list %}
-        <tr>
-            <td>{{ alert.Heading }}</td>
-            <td>{{ alert.Type }}</td>
-            <td><a href="{{ alert.File_link }}">Notice Link</a></td>
-            <td>{{ alert.Date }}</td>
-        </tr>
-        {% endfor %}
-</table>
-
-
-
-
-
-
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        <b>Notifications</b></div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Heading</th>
+                    <th>Type</th>
+                    <th>Link</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for alert in Alerts_list %}
+                <tr>
+                    <td>{{ alert.Heading }}</td>
+                    <td>{{ alert.Type }}</td>
+                    <td><a href="{{ alert.File_link }}">Notice Link</a></td>
+                    <td>{{ alert.Date }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 </body>
 

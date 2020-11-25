@@ -7,11 +7,22 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 @login_required()
-def alerts(request,stud_id):
+def alerts(request, stud_id):
     alerts_list = []
     for x in Alert.objects.all().order_by('Date').reverse():
         alerts_list.append(x)
     return render(request, 'info/alerts.html', {'Alerts_list':alerts_list})
+
+@login_required()
+def chat(request, stud_id):
+    stud = get_object_or_404(Student, Rollno=stud_id).name
+    return render(request, 'info/chat.html', {'stud_id': stud_id, 'stud_name': stud})
+
+@login_required()
+def chat_room(request, stud_id):
+    stud = get_object_or_404(Student, Rollno=stud_id)
+    id = stud.class_id_id
+    return render(request, 'info/chatroom.html', {'stud_id': stud_id, 'stud_name': stud.name, 'room_name': id})
 
 @login_required
 def index(request):

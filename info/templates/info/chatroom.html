@@ -1,0 +1,65 @@
+{% extends 'info/base.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        <b>Welcome to room {{room_name}}</b>
+    </div>
+    <div class="card-body">
+        <textarea id="chat-log" cols="100" rows="20" readonly></textarea><br>
+        <input id="chat-message-input" type="text" size="98"><br><br>
+        <input class="btn btn-primary" id="chat-message-submit" type="button" value="Send Message">
+    </div>
+</div>
+{{ room_name|json_script:"room-name" }}
+{{ stud_id | json_script:"stud-id" }}
+{{ stud_name | json_script:"stud-name" }}
+<script>
+        var studId = JSON.parse(document.getElementById('stud-id').textContent);
+        var studName = JSON.parse(document.getElementById('stud-name').textContent);
+        const roomName = JSON.parse(document.getElementById('room-name').textContent);
+
+        const chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/info/student/' + studId + '/ws/chat/' + roomName + '/'
+        );
+
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            document.querySelector('#chat-log').value += (data.message + '\n');
+        };
+
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+        document.querySelector('#chat-message-input').focus();
+        document.querySelector('#chat-message-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+
+        document.querySelector('#chat-message-submit').onclick = function(e) {
+            const messageInputDom = document.querySelector('#chat-message-input');
+            var message = messageInputDom.value;
+            if (message == "")
+                return;
+            var time = new Date();
+            time = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+            message = "[" + time + "]" + studName + " : " + message;
+            chatSocket.send(JSON.stringify({
+                'message': message
+            }));
+            messageInputDom.value = '';
+        };
+
+
+</script>
+</body>
+
+{%endblock%}
